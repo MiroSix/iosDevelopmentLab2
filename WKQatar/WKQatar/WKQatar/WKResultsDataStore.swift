@@ -23,21 +23,32 @@ class WKResultsDataStore {
                 array.append(result.location)
             }
         }
-        return array
+        return array.sorted()
     }
     
     func getAllResultsByLocation(location: String) -> [WKResult] {
-        var result: [WKResult] = []
+        var array: [WKResult] = []
         
+        for result in results {
+            if !array.contains(result) {
+                if result.location == location {
+                    array.append(result)
+                }
+            }
+        }
         
-        
-        return result
+        return array
     }
     
     func getAllTeams() -> [String] {
         var array: [String] = []
         
+        results = results.filter { result in
+            result.group != nil
+        }
+        
         for result in results {
+            
             if !array.contains(result.awayTeam) {
                 array.append(result.awayTeam)
             }
@@ -46,6 +57,6 @@ class WKResultsDataStore {
             }
         }
         
-        return array
+        return array.sorted()
     }
 }

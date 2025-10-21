@@ -8,13 +8,28 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    @State var SelectedTeam: String? = nil
+    @State var selectedTeam: String? = nil
+    @Environment(WKResultsDataStore.self) private var store
     var body: some View {
-        List(getAllTeams()){
-            
+        VStack {
+            HStack {
+                Image(systemName: "soccerball").foregroundStyle(.tint)
+                Text("WK QATAR 2020")
+                    .font(.title)
+                    .fontWeight(.semibold)
+                Image(systemName: "soccerball").foregroundStyle(.tint)
+            }
+            Text("Select your favorite team...")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.top, 4)
+
+            List(store.getAllTeams(), id: \.self, selection: $selectedTeam){ team in
+                Text(team)
+            }
+            NavigationLink("Next"){
+                ResultsView(selectedTeam: $selectedTeam)
+            }
         }
-        NavigationLink(titleKey: "Results"){
-            ResultsView()
-        }
+        .padding()
     }
 }

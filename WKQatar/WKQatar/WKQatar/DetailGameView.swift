@@ -8,11 +8,8 @@
 import SwiftUI
 
 struct DetailGameView: View {
+    @Binding var selectedWKResult: WKResult?
     var body: some View {
-        
+        ScoreDetailView(selectedWKResult: $selectedWKResult)
     }
-}
-
-#Preview {
-    DetailGameView()
 }

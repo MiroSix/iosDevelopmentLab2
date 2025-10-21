@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct ListStadionView: View {
+    @Environment(WKResultsDataStore.self) private var store
+    @Binding var selectedLocation: String?
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List(store.getAllLocations(), id: \.self, selection: $selectedLocation) { location in
+            Text(location)
+        }
+        .navigationTitle("Stadiums")
     }
-}
-
-#Preview {
-    ListStadionView()
 }
