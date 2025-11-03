@@ -11,14 +11,18 @@ struct ScoreDetailView: View {
     @Binding var selectedWKResult: WKResult?
     var body: some View {
         if let selectedWKResult = selectedWKResult {
-            Text(selectedWKResult.dateUTC)
-            Text(selectedWKResult.location)
+            
+            Text(selectedWKResult.dateUTC).frame(maxWidth: .infinity, alignment: .leading).padding(10).fontWeight(.semibold)
+            Spacer()
+            Text(selectedWKResult.location).frame(maxWidth: .infinity, alignment: .center).font(.title)
+            Spacer()
+            Divider()
             Grid(alignment: .center, horizontalSpacing: 16, verticalSpacing: 4) {
                 GridRow {
                     Text(selectedWKResult.homeTeam)
                         .frame(maxWidth: .infinity, alignment: .center)
 
-                    Text("vs")
+                    Text("X")
                         .frame(maxWidth: .infinity, alignment: .center)
 
                     Text(selectedWKResult.awayTeam)
@@ -38,10 +42,13 @@ struct ScoreDetailView: View {
                 }
                                             
                 
-            }.frame(maxWidth: .infinity, alignment: .center)
-            
-            Text("Round: \(selectedWKResult.roundNumber)")
-            Text("Group:" + String(selectedWKResult.group))
+            }.frame(maxWidth: .infinity, alignment: .center).padding(2)
+            Divider()
+            Spacer()
+            Text("Round: \(selectedWKResult.roundNumber)").frame(maxWidth: .infinity, alignment: .leading).padding(10)
+            Spacer()
+            Text("Group:" + String(selectedWKResult.group!)).frame(maxWidth: .infinity, alignment: .leading).padding(10)
+            Spacer()
         }
     }
 }

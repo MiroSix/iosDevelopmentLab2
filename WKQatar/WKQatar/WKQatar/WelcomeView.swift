@@ -32,4 +32,5 @@ struct WelcomeView: View {
         }
         .padding()
     }
+    
 }

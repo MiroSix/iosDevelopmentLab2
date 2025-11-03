@@ -16,16 +16,17 @@ struct ScoreListView: View {
         if let selectedLocation = selectedLocation {
             VStack {
                 List(store.getAllResultsByLocation(location: selectedLocation), id: \.self, selection: $selectedWKResult) { result in
-                    Grid(alignment: .center, horizontalSpacing: 16, verticalSpacing: 4) {
+                    Grid(alignment: .center, horizontalSpacing: 20, verticalSpacing: 4) {
                         GridRow {
                             Text(result.homeTeam)
                                 .frame(maxWidth: .infinity, alignment: .center)
-
-                            Text("vs")
+                                .foregroundColor(result.homeTeam == selectedTeam ? .red : .primary)
+                            Text("X")
                                 .frame(maxWidth: .infinity, alignment: .center)
 
                             Text(result.awayTeam)
                                 .frame(maxWidth: .infinity, alignment: .center)
+                                .foregroundColor(result.awayTeam == selectedTeam ? .red : .primary)
                         }
                         if result.homeTeamScore != nil {
                             GridRow {

@@ -14,6 +14,5 @@ struct ListStadionView: View {
         List(store.getAllLocations(), id: \.self, selection: $selectedLocation) { location in
             Text(location)
         }
-        .navigationTitle("Stadiums")
     }
 }
