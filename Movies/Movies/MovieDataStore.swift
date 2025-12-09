@@ -66,7 +66,7 @@ class MovieDataStore {
         //simulate async call
         do {
             print("⏳ Simulating 2-second load delay...")
-            try await Task.sleep(for: .seconds(2)) // Simulate long load
+            try await Task.sleep(for: .seconds(1)) // Simulate long load
             movies = load("movies.json")
             sort()
             print("✅ Data loaded successfully.")
